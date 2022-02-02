@@ -134,3 +134,5 @@ dmypy.json
 static/
 posts/static/
 media/
+
+ingredients.csv

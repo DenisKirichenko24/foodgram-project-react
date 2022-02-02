@@ -48,7 +48,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredient',
-        verbose_name='Ингридиенты рецепта',
+        verbose_name='Ингредиенты рецепта',
     )
     tags = models.ManyToManyField(Tag, verbose_name='Теги')
     cooking_time = models.PositiveSmallIntegerField(
@@ -71,7 +71,7 @@ class RecipeIngredient(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
         related_name='recipe_ingredient',
-        verbose_name='Ингридиент',
+        verbose_name='Ингредиент',
     )
     recipe = models.ForeignKey(
         Recipe,
@@ -83,7 +83,7 @@ class RecipeIngredient(models.Model):
         validators=(
             validators.MinValueValidator(
                 1, message='Минимальное количество ингридиентов 1'),),
-        verbose_name='Количество ингридиентов',
+        verbose_name='Количество ингредиентов',
     )
 
     class Meta:

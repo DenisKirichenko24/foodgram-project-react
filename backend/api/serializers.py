@@ -71,50 +71,50 @@ class RecipeSerializer(serializers.ModelSerializer):
         return Recipe.objects.filter(cart__user=user, id=obj.id).exists()
 
     def validate(self, data):
-        tags = self.initial_data.get("tags")
+        tags = self.initial_data.get('tags')
         if not tags:
             raise serializers.ValidationError(
-                "Необходим минимум один тег"
+                'Необходим минимум один тег'
             )
         if len(tags) != len(set(tags)):
-            raise serializers.ValidationError("Данный тег уже есть")
-        data["tags"] = tags
+            raise serializers.ValidationError('Данный тег уже есть')
+        data['tags'] = tags
 
-        ingredients = self.initial_data.get("ingredients")
+        ingredients = self.initial_data.get('ingredients')
         if not ingredients or len(ingredients) < 1:
             raise serializers.ValidationError(
-                "Для рецепта необходим минимум один ингридиент"
+                'Для рецепта необходим минимум один ингридиент'
             )
         ingredient_list = []
         for ingredient_item in ingredients:
             ingredient = get_object_or_404(
-                Ingredient, id=ingredient_item["id"]
+                Ingredient, id=ingredient_item['id']
             )
             if ingredient in ingredient_list:
                 raise serializers.ValidationError(
-                    "Данный ингридиент уже добавлен"
+                    'Данный ингридиент уже добавлен'
                 )
             ingredient_list.append(ingredient)
-            if int(ingredient_item["amount"]) <= 0:
+            if int(ingredient_item['amount']) <= 0:
                 raise serializers.ValidationError(
-                    "Количество не может быть равно 0"
+                    'Количество не может быть равно 0'
                 )
-        data["ingredients"] = ingredients
+        data['ingredients'] = ingredients
 
-        cooking_time = self.initial_data.get("cooking_time")
+        cooking_time = self.initial_data.get('cooking_time')
         if not int(cooking_time) > 0:
             raise serializers.ValidationError(
-                "Время приготовления не может быть равно 0"
+                'Время приготовления не может быть равно 0'
             )
-        data["cooking_time"] = cooking_time
+        data['cooking_time'] = cooking_time
         return data
 
     def create_ingredients(self, ingredients, recipe):
         for ingredient in ingredients:
             RecipeIngredient.objects.create(
                 recipe=recipe,
-                ingredient_id=ingredient.get("id"),
-                amount=ingredient.get("amount"),
+                ingredient_id=ingredient.get('id'),
+                amount=ingredient.get('amount'),
             )
 
     def create(self, validated_data):
@@ -127,12 +127,12 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
     def update(self, recipe, validated_data):
-        if "ingredients" in self.initial_data:
-            ingredients = validated_data.pop("ingredients")
+        if 'ingredients' in self.initial_data:
+            ingredients = validated_data.pop('ingredients')
             recipe.ingredients.clear()
             self.create_ingredients(ingredients, recipe)
-        if "tags" in self.initial_data:
-            tags_data = validated_data.pop("tags")
+        if 'tags' in self.initial_data:
+            tags_data = validated_data.pop('tags')
             recipe.tags.set(tags_data)
         return super().update(recipe, validated_data)
 
