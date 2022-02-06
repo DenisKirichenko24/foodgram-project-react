@@ -3,11 +3,10 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 from users.models import Follow
 
-from foodgram.models import (Cart, Favorite, Ingredient, Recipe,
-                             RecipeIngredient, Tag)
-
 from .fields import Base64ImageField
 from .serializers import CustomUserSerializer
+from foodgram.models import (Cart, Favorite, Ingredient, Recipe,
+                             RecipeIngredient, Tag)
 
 
 class IngredientSerializer(serializers.ModelSerializer):
