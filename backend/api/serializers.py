@@ -1,13 +1,12 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
+from .fields import Base64ImageField
+from .serializers import CustomUserSerializer
 
 from foodgram.models import (Cart, Favorite, Ingredient, Recipe,
                              RecipeIngredient, Tag)
 from users.models import Follow
-from .fields import Base64ImageField
-from .serializers import CustomUserSerializer
-
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
