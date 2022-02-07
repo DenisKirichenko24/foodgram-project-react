@@ -4,9 +4,9 @@ from foodgram.models import (Cart, Favorite, Ingredient, Recipe,
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 from users.models import Follow
+from users.serializers import CustomUserSerializer
 
 from .fields import Base64ImageField
-from .serializers import CustomUserSerializer
 
 
 class IngredientSerializer(serializers.ModelSerializer):
