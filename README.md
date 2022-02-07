@@ -1,5 +1,11 @@
 ![Yamdb_workflow](https://github.com/DenisKirichenko24/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
+Проект доступен по адресу http://51.250.18.186/recipes
+
+Данные для админки 
+admin
+admin
+
 # Яндекс.Практикум. Python backend. Diplom Foodgram
 
 ## Содержание
