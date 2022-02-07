@@ -8,9 +8,9 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')  # а нужно ли указать дефолтное значение?
+SECRET_KEY = os.getenv('SECRET_KEY', default='3(h&=e6%p!##v)#6vb!j)2$$r$i&4p-x7hkg0mv+n2=3s@5vyd')  # noqa
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['*']
