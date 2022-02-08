@@ -60,7 +60,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return self.add_obj(Cart, request.user, pk)
         if request.method == 'DELETE':
             return self.delete_obj(Cart, request.user, pk)
-        return Response(status=status.HTTP_200_OK)
+        return None
 
     def generate_pdf_shopping_list(self, user):
         shopping_list = RecipeIngredient.objects.filter(
@@ -99,13 +99,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def add_obj(self, model, user, pk):
         if model.objects.filter(user=user, recipe__id=pk).exists():
             return Response({
-                'errors': 'Данный рецепт уже в списке'
+                'errors': 'Рецепт уже добавлен в список'
             }, status=status.HTTP_400_BAD_REQUEST)
         recipe = get_object_or_404(Recipe, id=pk)
         model.objects.create(user=user, recipe=recipe)
         serializer = CropRecipeSerializer(recipe)
-        if serializer.is_valid():
-            serializer.save(user=user, recipe__id=pk)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def delete_obj(self, model, user, pk):
