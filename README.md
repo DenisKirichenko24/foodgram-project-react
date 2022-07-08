@@ -1,7 +1,7 @@
 ![Yamdb_workflow](https://github.com/DenisKirichenko24/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
 
-# Яндекс.Практикум. Python backend. Diplom Foodgram
+# Foodgram
 
 ## Содержание
 - [Описание_проекта](#Описание_проекта)
